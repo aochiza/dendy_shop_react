@@ -14,7 +14,7 @@ export const products: Product[] = [
     title: 'Dendy Classic (8-bit) — Console',
     price: 3990,
     category: 'console',
-    imageUrl:'./assets/1.jpg',
+    imageUrl:'https://avatars.mds.yandex.net/get-mpic/13666838/2a0000019625adfb2f33a6449a6c9243c2db/orig',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/0/0d/NES-Console-Set.jpg',
       'https://upload.wikimedia.org/wikipedia/commons/7/7f/NES-Console-Top.jpg',
@@ -29,7 +29,7 @@ export const products: Product[] = [
     price: 990,
     category: 'gamepad',
     imageUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/3/3a/NES-Controller.jpg',
+      'https://main-cdn.sbermegamarket.ru/big1/hlr-system/-19/288/731/813/141/651/600016381582b0.jpg',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/3/3a/NES-Controller.jpg',
       'https://upload.wikimedia.org/wikipedia/commons/8/8d/NES-Controller-Back.jpg',
@@ -43,7 +43,7 @@ export const products: Product[] = [
     price: 1190,
     category: 'gamepad',
     imageUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/2/2d/Nintendo-Entertainment-System-NES-Advantage-Controller.jpg',
+      'https://i.ebayimg.com/images/g/kh8AAOSw5yhdgjrc/s-l640.jpg',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/2/2d/Nintendo-Entertainment-System-NES-Advantage-Controller.jpg',
     ],
@@ -56,7 +56,7 @@ export const products: Product[] = [
     price: 590,
     category: 'cartridge',
     imageUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/5/52/NES-Cartridge.jpg',
+      'https://st.aestatic.net/items-img/R/7/9/3/U2d8ee7fd199342e18d17272d87f44690x.jpg_480x480.jpg',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/5/52/NES-Cartridge.jpg',
       'https://upload.wikimedia.org/wikipedia/commons/9/9b/NES-Cartridge-Back.jpg',
@@ -70,7 +70,7 @@ export const products: Product[] = [
     price: 690,
     category: 'cartridge',
     imageUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/5/52/NES-Cartridge.jpg',
+      'https://avatars.mds.yandex.net/get-mpic/6219218/img_id5250561217845393121.jpeg/orig',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/5/52/NES-Cartridge.jpg',
     ],
@@ -83,7 +83,7 @@ export const products: Product[] = [
     price: 490,
     category: 'cartridge',
     imageUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/5/52/NES-Cartridge.jpg',
+      'https://avatars.mds.yandex.net/get-mpic/17919307/2a0000019c7a80bf09cec9760e3a8f29a0bc/orig',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/5/52/NES-Cartridge.jpg',
     ],

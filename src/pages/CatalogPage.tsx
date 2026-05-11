@@ -1,24 +1,13 @@
 import { useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion' // ← добавить
 import { products } from '../data/products'
 import { NewArrivalsCarousel } from '../components/NewArrivalsCarousel'
-import { ProductCard } from "../components/ProductCard";
-import { useCatalogStore, type CatalogCategory } from '../store/catalogStore'
+import { ProductCard } from "../components/ProductCard"
+import { useCatalogStore } from '../store/catalogStore'
 
 export function CatalogPage() {
   const searchQuery = useCatalogStore((s) => s.searchQuery)
   const activeCategory = useCatalogStore((s) => s.activeCategory)
-  const setActiveCategory = useCatalogStore((s) => s.setActiveCategory)
-  const clearFilters = useCatalogStore((s) => s.clearFilters)
-
-  const categories: { id: CatalogCategory; label: string }[] = useMemo(
-    () => [
-      { id: 'all', label: 'All' },
-      { id: 'consoles', label: 'Consoles' },
-      { id: 'cartridges', label: 'Cartridges' },
-      { id: 'controllers', label: 'Controllers' },
-    ],
-    [],
-  )
 
   const newArrivals = useMemo(() => products.slice(0, 5), [])
 
@@ -37,58 +26,74 @@ export function CatalogPage() {
     })
   }, [activeCategory, searchQuery])
 
+  // Варианты анимации для карточек
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08, // задержка между карточками
+        delayChildren: 0.1,
+      },
+    },
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 24,
+      }
+    },
+  }
+
   return (
     <section>
+      <NewArrivalsCarousel title="New arrivals" items={newArrivals} />
+
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
         <h1
-          style={{ fontFamily: 'var(--pixel)', fontSize: 16, margin: '0 0 14px' }}
+          style={{ fontFamily: 'var(--pixel)', fontSize: 16, margin: '30px 0 20px' }}
           className="glow"
         >
           DENDY SHOP — CATALOG
         </h1>
       </div>
 
-      
-      <div className="catalogToolbar">
-        <div className="tabs" role="tablist" aria-label="Categories">
-          {categories.map((c) => (
-            <button
-              key={c.id}
-              type="button"
-              className={c.id === activeCategory ? 'tab tabActive' : 'tab'}
-              onClick={() => setActiveCategory(c.id)}
-              role="tab"
-              aria-selected={c.id === activeCategory}
-            >
-              {c.label}
-            </button>
-          ))}
-          
-           <div className="muted" style={{ fontSize: 20, marginBottom: 14 }}>
-          {filtered.length} items
-        </div>
-        </div>
-      </div>
-          
-      <NewArrivalsCarousel title="New arrivals" items={newArrivals} />
-
-      {filtered.length === 0 ? (
-        <div className="emptyState">
-          <div className="title glow">Ничего не найдено</div>
-          <div className="muted" style={{ fontSize: 20 }}>
-            Попробуй изменить запрос или категорию.
-          </div>
-        </div>
-      ) : (
-        <div className="productGrid">
-          {filtered.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
-      )}
-
-      
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeCategory + searchQuery} // меняется при смене категории или поиска
+          className="productGrid"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          exit={{ opacity: 0, transition: { duration: 0.15 } }}
+        >
+          {filtered.length === 0 ? (
+            <div className="emptyState" style={{ gridColumn: '1/-1' }}>
+              <div className="title glow">Ничего не найдено</div>
+              <div className="muted" style={{ fontSize: 20 }}>
+                Попробуй изменить запрос или категорию.
+              </div>
+            </div>
+          ) : (
+            filtered.map((p) => (
+              <motion.div
+                key={p.id}
+                variants={cardVariants}
+                layout
+                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              >
+                <ProductCard product={p} />
+              </motion.div>
+            ))
+          )}
+        </motion.div>
+      </AnimatePresence>
     </section>
   )
 }
-
