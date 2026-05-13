@@ -29,7 +29,7 @@
 ## Установка и запуск
 
 Клонирование репозитория:
-git clone https://github.com/your-username/dendy-shop.git
+git clone https://github.com/aochiza/dendy_shop_react
 cd dendy-shop
 
 
