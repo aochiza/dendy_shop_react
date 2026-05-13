@@ -1,6 +1,7 @@
 # Dendy Shop(React+Vite)
 
 Интернет-магазин ретро-консолей, игр и аксессуаров. Проект выполнен в стилистике 8-битной эстетики с пиксельной графикой и неоновыми акцентами.
+<img width="3160" height="1716" alt="image" src="https://github.com/user-attachments/assets/976729a7-cb93-4faf-b79b-5c8c3f30b0e1" />
 
 ## Технологии
 
