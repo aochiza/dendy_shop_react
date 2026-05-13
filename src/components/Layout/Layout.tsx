@@ -13,7 +13,7 @@ export function Layout() {
       <div className="container">
         <Outlet />
       </div>
-      <Footer /> {/* ← добавить футер */}
+      <Footer /> 
     </div>
   )
 }

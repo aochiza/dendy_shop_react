@@ -11,31 +11,31 @@ export type Product = {
 export const products: Product[] = [
   {
     id: 'dendy-001',
-    title: 'Dendy Classic (8-bit) — Console',
-    price: 3990,
+    title: 'Игровая приставка Dendy Junior',
+    price: 1890,
     category: 'console',
-    imageUrl:'https://avatars.mds.yandex.net/get-mpic/13666838/2a0000019625adfb2f33a6449a6c9243c2db/orig',
+    imageUrl:'https://pokupaylegko.ru/upload/shop_1/1/8/3/item_18370/shop_items_catalog_image18370.jpg',
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/0/0d/NES-Console-Set.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/7/7f/NES-Console-Top.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/6/6b/NES-Console-Ports.jpg',
+      'https://pokupaylegko.ru/upload/shop_1/1/8/3/item_18370/shop_items_catalog_image18370.jpg',
+      'https://pokupaylegko.ru/upload/shop_1/1/8/3/item_18370/shop_property_file_18370_17476.jpg',
+      'https://pokupaylegko.ru/upload/shop_1/1/8/3/item_18370/shop_property_file_18370_17477.jpg',
     ],
     description:
-      'Классическая 8-bit консоль в духе Dendy. Подключение по AV, простое управление, максимум ностальгии.',
+      'Dendy Junior 300 игр является продолжением линейки 8-битных приставок, выпускаемых Зеленоградским заводом.',
   },
   {
     id: 'dendy-002',
-    title: 'Dendy-style Gamepad — Classic',
+    title: 'Джойстик Dendy Controller 15 pin широкий разъем',
     price: 990,
     category: 'gamepad',
     imageUrl:
-      'https://main-cdn.sbermegamarket.ru/big1/hlr-system/-19/288/731/813/141/651/600016381582b0.jpg',
+      'https://tehnoopt.net/upload/iblock/e17/kc0rh4bdrhmmmrdlkdj84habxtimxgka/0e4628b6-4563-47df-ae01-2230e244c883_9e4bb7aa-2d00-11e9-811f-107b444a7ed4.jpeg',
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/3/3a/NES-Controller.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/8/8d/NES-Controller-Back.jpg',
+      'https://tehnoopt.net/upload/iblock/e17/kc0rh4bdrhmmmrdlkdj84habxtimxgka/0e4628b6-4563-47df-ae01-2230e244c883_9e4bb7aa-2d00-11e9-811f-107b444a7ed4.jpeg',
+      'https://tehnoopt.net/upload/iblock/9e6/xzl610m91krqu1vq8y3qmqnzb4momvau/0e4628b6-4563-47df-ae01-2230e244c883_9e4bb7ab-2d00-11e9-811f-107b444a7ed4.jpeg',
     ],
     description:
-      'Классический геймпад с крестовиной и двумя кнопками. Удобный хват, лёгкий ход, ретро-ощущения.',
+      'Классический квадратный джойстик Dendy с широким разъёмом подходит только для приставки Dendy. Имеет прямоугольный пластиковый корпус с кнопками управления. Подключение осуществляется при помощи кабеля.',
   },
   {
     id: 'dendy-003',
@@ -43,7 +43,7 @@ export const products: Product[] = [
     price: 1190,
     category: 'gamepad',
     imageUrl:
-      'https://i.ebayimg.com/images/g/kh8AAOSw5yhdgjrc/s-l640.jpg',
+      'https://tambov.diamondelectric.ru/images/1543/1542842/8bitdo_snes30_1.jpg',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/2/2d/Nintendo-Entertainment-System-NES-Advantage-Controller.jpg',
     ],
@@ -58,7 +58,7 @@ export const products: Product[] = [
     imageUrl:
       'https://st.aestatic.net/items-img/R/7/9/3/U2d8ee7fd199342e18d17272d87f44690x.jpg_480x480.jpg',
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/5/52/NES-Cartridge.jpg',
+      'https://st.aestatic.net/items-img/R/7/9/3/U2d8ee7fd199342e18d17272d87f44690x.jpg_480x480.jpg'  ,
       'https://upload.wikimedia.org/wikipedia/commons/9/9b/NES-Cartridge-Back.jpg',
     ],
     description:
@@ -70,7 +70,7 @@ export const products: Product[] = [
     price: 690,
     category: 'cartridge',
     imageUrl:
-      'https://avatars.mds.yandex.net/get-mpic/6219218/img_id5250561217845393121.jpeg/orig',
+      'https://avatars.mds.yandex.net/i?id=6e6359cedb7af0fa3cacef98021be1aa_l-6493270-images-thumbs&n=13',
     images: [
       'https://upload.wikimedia.org/wikipedia/commons/5/52/NES-Cartridge.jpg',
     ],

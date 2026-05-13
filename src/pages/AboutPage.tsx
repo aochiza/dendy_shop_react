@@ -1,0 +1,37 @@
+// pages/AboutPage.tsx
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+
+export function AboutPage() {
+  return (
+    <motion.section
+      className="contentPanel aboutPage"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <h1 className="productH1 glow" style={{ marginBottom: 20 }}>
+         О НАС
+      </h1>
+
+      <div className="aboutContent">
+        <div className="aboutHero">
+          <h2 className="aboutTitle">Добро пожаловать в официальный интернет-магазин Dendy.shop</h2>
+          <p className="aboutSubtitle">Возвращение в 90-е</p>
+        </div>
+
+        <div className="aboutHero">
+          <p className="aboutSubtitle">Нашей компании принадлежит легендарные торговые марки “Dendy” (Денди) и “Mega Drive”. Модельный ряд неоднократно обновлялся и сейчас мы выпускаем игровые приставки с предустановленными играми, что удобнее, чем использование картриджей, большая подборка дает возможность всегда найти интересную игру для любого возраста. Также мы выпускаем модели со встроенным блоком питания. Игровые видеоприставки “Денди” 8-бит и “Mega Drive” 16-бит имеют оригинальные технические характеристики материнских плат и воспроизводят видео и звук в играх без искажений.</p>
+        </div>
+
+        <div className="aboutHero">
+          <p className="aboutSubtitle">Наша компания является представителем мирового бренда «ONIKUMA». Под этим брендом выпускаются дизайнерские аксессуары для компьютеров и ноутбуков: игровые наушники, мыши, микрофоны, клавиатуры, компьютерные колонки и коврики для мышей. Мы так же развиваем отдельные направления беговелы и детские светильники под торговой маркой Dendy.</p>
+        </div>
+
+         <div className="aboutHero">
+          <p className="aboutSubtitle">Продукция, предлагаемая нашей компанией, отличается хорошим качеством, красивым, привлекательным для покупателя оформлением. Мы стремимся не останавливаться на достигнутых результатах, в наших планах постоянное расширение ассортимента товаров.</p>
+        </div>
+      </div>
+    </motion.section>
+  )
+}

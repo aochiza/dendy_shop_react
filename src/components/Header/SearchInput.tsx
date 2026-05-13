@@ -1,3 +1,4 @@
+// components/Header/SearchInput.tsx
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useCatalogStore } from '../../store/catalogStore'
@@ -11,7 +12,11 @@ export function SearchInput() {
   useEffect(() => {
     const t = window.setTimeout(() => {
       setSearchQuery(value.trim())
-      if (location.pathname !== '/') navigate('/', { replace: false })
+
+      // И только если есть текст поиска (чтобы не срабатывало при пустом вводе)
+      if (value.trim().length > 0 && !location.pathname.startsWith('/product') && location.pathname !== '/cart' && location.pathname !== '/favorites') {
+        if (location.pathname !== '/') navigate('/')
+      }
     }, 300)
     return () => window.clearTimeout(t)
   }, [value, setSearchQuery, location.pathname, navigate])

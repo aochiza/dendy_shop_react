@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Product } from '../data/products'
 import { useCartStore } from '../store/cartStore'
@@ -11,7 +11,7 @@ type Props = {
 }
 
 export function NewArrivalsCarousel({ 
-  title = 'New arrivals', 
+  title = 'Новинки', 
   items, 
   autoPlayInterval = 5000 
 }: Props) {
@@ -21,12 +21,6 @@ export function NewArrivalsCarousel({
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [direction, setDirection] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  
-  const containerRef = useRef<HTMLDivElement>(null)
-  const lastGestureX = useRef<number | null>(null)
-  const lastSwitchTime = useRef<number>(0)
-  const touchStartX = useRef(0)
-  const touchStartY = useRef(0)
   
   const sliderItems = items.slice(0, 4)
   const currentItem = sliderItems[currentIndex]
@@ -45,7 +39,7 @@ export function NewArrivalsCarousel({
     return () => clearInterval(interval)
   }, [isAutoPlaying, sliderItems.length, autoPlayInterval, isTransitioning])
 
-  // Функции переключения с блокировкой во время анимации
+  // Функции переключения
   const goToNext = () => {
     if (isTransitioning) return
     setIsTransitioning(true)
@@ -70,81 +64,6 @@ export function NewArrivalsCarousel({
     }, 500)
   }
 
-  
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    // Проверяем, используется ли тачпад (ctrlKey для зума, но лучше проверять наличие двух пальцев)
-    // Браузеры передают wheelEvent с разными свойствами для тачпада
-    const isTrackpad = e.ctrlKey || Math.abs(e.deltaY) < 30
-    
-    // Для двухпальцевых жестов на тачпаде горизонтальный свайп даёт большой deltaX
-    const horizontalSwipe = Math.abs(e.deltaX) > 30
-    const diagonalSwipe = Math.abs(e.deltaX) > 15 && Math.abs(e.deltaY) < 20
-    
-    if ((horizontalSwipe || diagonalSwipe) && !isTransitioning) {
-      const now = Date.now()
-      if (now - lastSwitchTime.current > 500) {
-        if (e.deltaX > 0) {
-          // Два пальца влево -> следующий товар
-          goToNext()
-        } else if (e.deltaX < 0) {
-          // Два пальца вправо -> предыдущий товар
-          goToPrevious()
-        }
-        lastSwitchTime.current = now
-      }
-      e.preventDefault()
-    }
-  }
-
-  // Альтернативный метод через TouchEvent для сенсорных экранов
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX
-    touchStartY.current = e.touches[0].clientY
-  }
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current
-    const deltaY = e.changedTouches[0].clientY - touchStartY.current
-    
-    // Горизонтальный свайп (игнорируем вертикальные)
-    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) && !isTransitioning) {
-      if (deltaX > 0) {
-        goToPrevious()
-      } else {
-        goToNext()
-      }
-    }
-  }
-
-  // Дополнительная поддержка: движение мыши (для десктопов без тачпада)
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (lastGestureX.current === null) {
-      lastGestureX.current = e.clientX
-      return
-    }
-    
-    const deltaX = e.clientX - lastGestureX.current
-    const now = Date.now()
-    const timeSinceLastSwitch = now - lastSwitchTime.current
-    
-    const threshold = 50
-    const debounceTime = 600
-    
-    if (Math.abs(deltaX) > threshold && timeSinceLastSwitch > debounceTime && !isTransitioning) {
-      if (deltaX > 0) {
-        goToPrevious()
-      } else {
-        goToNext()
-      }
-      lastSwitchTime.current = now
-      lastGestureX.current = null
-    }
-  }
-
-  const handleMouseLeave = () => {
-    lastGestureX.current = null
-  }
-
   if (sliderItems.length === 0) return null
 
   return (
@@ -161,7 +80,6 @@ export function NewArrivalsCarousel({
       <div className="arrivalsHeader">
         <h2 className="arrivalsTitle">{title}</h2>
         
-        {/* Точки навигации */}
         <div className="arrivalsDots">
           {sliderItems.map((_, idx) => (
             <button
@@ -181,14 +99,39 @@ export function NewArrivalsCarousel({
       </div>
 
       <div 
-        ref={containerRef}
         className="arrivalsSliderContainer"
-        onWheel={handleWheel}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+        style={{ position: 'relative' }}
       >
+        {/* Левая область для клика */}
+        <div 
+          className="arrivalsNavArea left" 
+          onClick={goToPrevious}
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '15%',
+            height: '100%',
+            zIndex: 10,
+            cursor: 'pointer'
+          }}
+        />
+        
+        {/* Правая область для клика */}
+        <div 
+          className="arrivalsNavArea right" 
+          onClick={goToNext}
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            width: '15%',
+            height: '100%',
+            zIndex: 10,
+            cursor: 'pointer'
+          }}
+        />
+        
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentItem.id}
@@ -198,7 +141,7 @@ export function NewArrivalsCarousel({
             exit={{ opacity: 0, x: direction === 1 ? -400 : 400, scale: 0.95 }}
             transition={{ 
               duration: 0.55, 
-              ease: [0.32, 0.72, 0, 1], // кастомная кривая для очень плавного движения
+              ease: [0.32, 0.72, 0, 1],
               type: "tween"
             }}
             className="arrivalsSliderCard"
@@ -254,7 +197,6 @@ export function NewArrivalsCarousel({
           </motion.div>
         </AnimatePresence>
         
-        {/* Декоративные элементы для плавности */}
         <div className="arrivalsGradientLeft" />
         <div className="arrivalsGradientRight" />
       </div>

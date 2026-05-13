@@ -20,12 +20,12 @@ export function ProductPage() {
   if (!product) {
     return (
       <section className="card">
-        <div className="title glow">NOT FOUND</div>
+        <div className="title glow">НЕ НАЙДЕНО</div>
         <p className="muted" style={{ fontSize: 20, margin: '0 0 12px' }}>
-          Product does not exist.
+          Продукт не найден
         </p>
         <Link className="btn" style={{ borderBottom: 0 }} to="/">
-          BACK TO CATALOG
+          Перейти к каталогу
         </Link>
       </section>
     )

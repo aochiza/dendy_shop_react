@@ -6,51 +6,66 @@ import { useFavoritesStore } from "../store/favoritesStore";
 
 export function ProductCard({ product }: { product: Product }) {
   const addToCart = useCartStore((s) => s.addToCart);
-
   const { toggleFavorite, isFavorite } = useFavoritesStore();
   const favorite = isFavorite(product.id);
 
   return (
     <motion.div
       className="card productCard"
-      whileHover={{ scale: 1.03 }}
-      style={{ position: "relative" }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ 
+        y: -8,
+        scale: 1.02,
+        transition: { type: "spring", stiffness: 300, damping: 20 }
+      }}
+      transition={{ duration: 0.3 }}
     >
-      <button
+      {/* Кнопка избранного */}
+      <motion.button
         onClick={() => toggleFavorite(product)}
-        style={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-          fontSize: "18px",
-          background: "rgba(0,0,0,0.4)",
-          border: "1px solid #39ff14",
-          borderRadius: "6px",
-          cursor: "pointer",
-          color: favorite ? "#39ff14" : "#888",
-        }}
+        className="favorite-btn"
+        whileTap={{ scale: 0.85 }}
+        aria-label={favorite ? "Удалить из избранного" : "Добавить в избранное"}
       >
-        {favorite ? "♥" : "♡"}
-      </button>
+        <motion.span
+          initial={false}
+          animate={{ scale: favorite ? [1, 1.2, 1] : 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          {favorite ? "❤️" : "🤍"}
+        </motion.span>
+      </motion.button>
 
-      <Link to={`/product/${product.id}`} style={{ textDecoration: "none" }}>
-        <img
-          src={product.imageUrl}
-          alt={product.title}
-          style={{
-            width: "100%",
-            height: "150px",
-            objectFit: "contain",
-          }}
-        />
-        <h3>{product.title}</h3>
+      <Link to={`/product/${product.id}`} className="productCard-link">
+        {/* Изображение */}
+        <div className="productCard-image">
+          <img
+            src={product.imageUrl}
+            alt={product.title}
+            loading="lazy"
+          />
+        </div>
+
+        {/* Название */}
+        <h3 className="productCard-title">{product.title}</h3>
+
+        {/* Цена */}
+        <div className="productCard-price">
+          {product.price.toLocaleString("ru-RU")} ₽
+        </div>
       </Link>
 
-      <p>{product.price.toLocaleString("ru-RU")} ₽</p>
-
-      <button onClick={() => addToCart(product)}>
-        В корзину
-      </button>
+      {/* Кнопка корзины */}
+      <motion.button
+        onClick={() => addToCart(product)}
+        className="productCard-cart-btn"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span className="cart-icon">🛒</span>
+        <span>В корзину</span>
+      </motion.button>
     </motion.div>
   );
 }
