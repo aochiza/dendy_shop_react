@@ -8,7 +8,7 @@ import { ProductCard } from "../components/ProductCard"
 import { useCatalogStore, type CatalogCategory } from '../store/catalogStore'
 
 export function CatalogPage() {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, _setSearchParams] = useSearchParams();
   const searchQuery = useCatalogStore((s) => s.searchQuery)
   const activeCategory = useCatalogStore((s) => s.activeCategory)
   const setActiveCategory = useCatalogStore((s) => s.setActiveCategory)

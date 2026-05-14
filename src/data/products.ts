@@ -25,7 +25,7 @@ export const products: Product[] = [
   },
   {
     id: 'dendy-002',
-    title: 'Джойстик Dendy Controller 15 pin широкий разъем',
+    title: 'Джойстик Dendy Controller 15 pin',
     price: 990,
     category: 'gamepad',
     imageUrl:
@@ -39,7 +39,7 @@ export const products: Product[] = [
   },
   {
     id: 'dendy-003',
-    title: 'Gamepad (Turbo) — Dual Button',
+    title: 'Джойстик (Turbo) — Dual Button',
     price: 1190,
     category: 'gamepad',
     imageUrl:
@@ -52,7 +52,7 @@ export const products: Product[] = [
   },
   {
     id: 'dendy-004',
-    title: 'Cartridge: Super Mario Bros (8-bit)',
+    title: 'Картридж: Super Mario Bros (8-bit)',
     price: 590,
     category: 'cartridge',
     imageUrl:
@@ -66,7 +66,7 @@ export const products: Product[] = [
   },
   {
     id: 'dendy-005',
-    title: 'Cartridge: Contra (8-bit)',
+    title: 'Картридж: Contra (8-bit)',
     price: 690,
     category: 'cartridge',
     imageUrl:
@@ -79,7 +79,7 @@ export const products: Product[] = [
   },
   {
     id: 'dendy-006',
-    title: 'Cartridge: Battle City (8-bit)',
+    title: 'Картридж: Battle City (8-bit)',
     price: 490,
     category: 'cartridge',
     imageUrl:

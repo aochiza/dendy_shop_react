@@ -527,20 +527,6 @@ a:hover {
 }
 
 
-.tabActive::before {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 2px;
-  background: rgb(127, 164, 69);
-  border-radius: 2px;
-  box-shadow: 0 0 8px rgba(127, 164, 69, 0.6);
-}
-
-
 .emptyState {
   padding: 18px;
   border: 1px solid rgba(57, 255, 20, 0.14);
@@ -995,6 +981,7 @@ a:hover {
   position: relative;
   z-index: 2;
   max-width: 550px;
+  height: clamp(300px, 20vh, 600px);
   color: white;
 }
 

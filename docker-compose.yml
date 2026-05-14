@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dendy-shop
+    ports:
+      - "8080:80"
+      - "0.0.0.0:8080:80"
+    restart: unless-stopped
+    networks:
+      - dendy-network
+
+networks:
+  dendy-network:
+    driver: bridge

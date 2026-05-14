@@ -1,6 +1,5 @@
 // pages/AboutPage.tsx
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 
 export function AboutPage() {
   return (
